@@ -13,8 +13,21 @@ public class HaloOglasiLoginPage extends BaseTest {
 
     @FindBy(linkText = "Registrujte se →")
     WebElement registrujteSeLink;
+    @FindBy(id = "EMailOrUsername")
+    WebElement emailIliKorisnickoImeInputField;
+    @FindBy(css = ".login-button")
+    WebElement ulogujMeButton;
 
     public void registrujteSeLinkClick() {
         wdWait.until(ExpectedConditions.elementToBeClickable(registrujteSeLink)).click();
+    }
+
+    public void emailIliKorisnickoImeInputFieldSendKeys(String emailIliKorisnickoIme) {
+        wdWait.until(ExpectedConditions.visibilityOf(emailIliKorisnickoImeInputField)).clear();
+        emailIliKorisnickoImeInputField.sendKeys(emailIliKorisnickoIme);
+    }
+
+    public void ulogujMeButtonClick() {
+        wdWait.until(ExpectedConditions.elementToBeClickable(ulogujMeButton)).click();
     }
 }

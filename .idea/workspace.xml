@@ -5,17 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e37edd28-d4c0-4efc-8a27-f553d5d7f1b4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/page/HaloOglasiHomePage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/page/HaloOglasiLoginPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/page/HaloOglasiRegistrationPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/page/HaloOglasiSuccessfulRegistrationPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/test/HaloOglasiSuccessfulRegistrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/page/HaloOglasiUserProfilePage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/page/MailinatorHaloOglasiEmailPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/page/MailinatorHomePage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/page/MailinatorInboxPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/page/HaloOglasiLoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/page/HaloOglasiLoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/page/HaloOglasiSuccessfulRegistrationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/page/HaloOglasiSuccessfulRegistrationPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/HaloOglasiSuccessfulRegistrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/HaloOglasiSuccessfulRegistrationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +45,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Vanja/IdeaProjects/Vanja-Milenov-Ivanisevic"
+    "last_opened_file_path": "C:/Users/Vanja/IdeaProjects/halo-oglasi"
   }
 }]]></component>
   <component name="RunManager">

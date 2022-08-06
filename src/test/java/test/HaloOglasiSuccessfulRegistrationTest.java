@@ -1,13 +1,13 @@
 package test;
 
 import base.BaseTest;
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import page.HaloOglasiHomePage;
-import page.HaloOglasiLoginPage;
-import page.HaloOglasiRegistrationPage;
-import page.HaloOglasiSuccessfulRegistrationPage;
+import org.openqa.selenium.Keys;
+import page.*;
+
+import java.util.Random;
 
 public class HaloOglasiSuccessfulRegistrationTest extends BaseTest {
 
@@ -15,6 +15,26 @@ public class HaloOglasiSuccessfulRegistrationTest extends BaseTest {
     HaloOglasiLoginPage haloOglasiLoginPage;
     HaloOglasiRegistrationPage haloOglasiRegistrationPage;
     HaloOglasiSuccessfulRegistrationPage haloOglasiSuccessfulRegistrationPage;
+    MailinatorHomePage mailinatorHomePage;
+    MailinatorInboxPage mailinatorInboxPage;
+    MailinatorHaloOglasiEmailPage mailinatorHaloOglasiEmailPage;
+    HaloOglasiUserProfilePage haloOglasiUserProfilePage;
+
+    Random random = new Random();
+
+    String testIme = "nekoTestIme" + random.nextInt(999999);
+    String testEmail = testIme + "@mailinator.com";
+    String uspesnaRegistracijaMessage = "Registracija je uspela!\n" +
+            "Kako bi Vaš nalog postao aktivan, neophodno je da kliknite na link u mejlu koji Vam je poslat na : ";
+    String mailinatorUrl = "https://www.mailinator.com/";
+
+    String uspesnaAktivacijaMessage = "Vaš nalog je uspešno aktiviran!\n" +
+            "Produžite na stranicu za logovanje kako biste pristupili našem portalu. Prijava";
+
+    String email = "email: ";
+
+
+
 
     @Before
     public void setUpTest() {
@@ -22,21 +42,49 @@ public class HaloOglasiSuccessfulRegistrationTest extends BaseTest {
       haloOglasiLoginPage = new HaloOglasiLoginPage();
       haloOglasiRegistrationPage = new HaloOglasiRegistrationPage();
       haloOglasiSuccessfulRegistrationPage = new HaloOglasiSuccessfulRegistrationPage();
+      mailinatorHomePage = new MailinatorHomePage();
+      mailinatorInboxPage = new MailinatorInboxPage();
+      mailinatorHaloOglasiEmailPage = new MailinatorHaloOglasiEmailPage();
+      haloOglasiUserProfilePage = new HaloOglasiUserProfilePage();
+      driver.manage().window().fullscreen();
+
+
+
     }
     @Test
     public void successfulRegistrationTest() {
         haloOglasiHomePage.ulogujSeButtonClick();
         haloOglasiLoginPage.registrujteSeLinkClick();
         haloOglasiRegistrationPage.fizickoLiceRadioButtonAlwaysSelected();
-        haloOglasiRegistrationPage.korisnickoImeInputFieldSendKeys("nekotestime34");
-        haloOglasiRegistrationPage.emailInputFieldSendKeys("nekotestime34@emailinator.com");
-        haloOglasiRegistrationPage.lozinkaInputFieldSendKeys("12345678");
-        haloOglasiRegistrationPage.ponoviLozinkuInputFieldSendKeys("12345678");
+        haloOglasiRegistrationPage.korisnickoImeInputFieldSendKeys(testIme);
+        haloOglasiRegistrationPage.emailInputFieldSendKeys(testEmail);
+        haloOglasiRegistrationPage.lozinkaInputFieldSendKeys(testIme);
+        haloOglasiRegistrationPage.ponoviLozinkuInputFieldSendKeys(testIme);
         haloOglasiRegistrationPage.saglasnostCheckboxClick();
         haloOglasiRegistrationPage.registrujMeButtonClick();
-        Assert.assertTrue(haloOglasiSuccessfulRegistrationPage.successfulRegistrationMessageIsDisplayed());
-        Assert.assertEquals("Registracija je uspela!\n" +
-                "Kako bi Vaš nalog postao aktivan, neophodno je da kliknite na link u mejlu koji Vam je poslat na : nekotestime34@emailinator.com !", haloOglasiSuccessfulRegistrationPage.successfulRegistrationMessageGetText());
+        assertTrue(haloOglasiSuccessfulRegistrationPage.successfulRegistrationMessageIsDisplayed());
+        assertEquals(uspesnaRegistracijaMessage + testEmail + " !", haloOglasiSuccessfulRegistrationPage.successfulRegistrationMessageGetText());
+        driver.get(mailinatorUrl);
+        driver.manage().window().fullscreen();
+        mailinatorHomePage.mailinatorInputFieldSendKeys(testEmail);
+        mailinatorHomePage.mailinatorInputFieldSendKeyboardKeys(Keys.ENTER);
+        mailinatorInboxPage.haloOglasiAktivacioniMailClick();
+        mailinatorHaloOglasiEmailPage.switchFocusToIframeBodyWithWdWait();
+        mailinatorHaloOglasiEmailPage.aktivirajNalogButtonClick();
+        haloOglasiSuccessfulRegistrationPage.switchToNewTab(1);
+        assertTrue(haloOglasiSuccessfulRegistrationPage.successfulRegistrationMessageIsDisplayed());
+        assertEquals(uspesnaAktivacijaMessage , haloOglasiSuccessfulRegistrationPage.successfulRegistrationMessageGetText());
+        haloOglasiSuccessfulRegistrationPage.prijavaLinkClick();
+        haloOglasiLoginPage.emailIliKorisnickoImeInputFieldSendKeys(testEmail);
+        haloOglasiRegistrationPage.lozinkaInputFieldSendKeys(testIme);
+        haloOglasiLoginPage.ulogujMeButtonClick();
+        driver.manage().window().fullscreen();
+        haloOglasiUserProfilePage.mojProfilDropDownHover();
+        assertTrue(haloOglasiUserProfilePage.korisnickoImeIsDisplayed());
+        assertEquals(testIme, haloOglasiUserProfilePage.korisnickoImeGetText());
+        assertTrue(haloOglasiUserProfilePage.korisnickiEmailIsDisplayed());
+        assertEquals(email + testEmail, haloOglasiUserProfilePage.korisnickiEmailGetText());
+
 
     }
 
